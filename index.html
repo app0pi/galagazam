@@ -1,14 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="galagazam.css">
-    <!--note script tag may need to be moved later-->
+    <link rel="stylesheet" type="text/css" href="galagazam.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="keymaster.js"></script>
+    <script src="view.js"></script>
+    <script src="model.js"></script>
     <script src="galagazam.js"></script>
-    <title>Galagazam</title>
 </head>
 <body>
-    Galagazam
+    <div class="center stats"></div>
+    <div class="center">
+      <div class="game-status center"></div>
+      <canvas class="center" id="canvas" height="700" width="700">
+      </canvas>
+    </div>
 </body>
 </html>
