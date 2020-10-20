@@ -83,10 +83,10 @@ var view = {
     controller.generateEnemy(currentTime);
     controller.updateEnemies();
     // Avatar movement
-    if (key.isPressed("A")) controller.updateAvatar(LEFT);
-    if (key.isPressed("D")) controller.updateAvatar(RIGHT);
-    if (key.isPressed("W")) controller.updateAvatar(UP);
-    if (key.isPressed("S")) controller.updateAvatar(DOWN);
+    if (key.isPressed("A") || key.isPressed("left")) controller.updateAvatar(LEFT);
+    if (key.isPressed("D") || key.isPressed("right")) controller.updateAvatar(RIGHT);
+    if (key.isPressed("W") || key.isPressed("up")) controller.updateAvatar(UP);
+    if (key.isPressed("S") || key.isPressed("down")) controller.updateAvatar(DOWN);
     // Update bullet locations
     if (controller.getBullets) controller.updateBullets();
     // After updating everything, check and process any collisions
