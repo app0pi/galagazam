@@ -48,6 +48,11 @@ var controller = {
 
   getStats: function() {
     return [model.avatar.hp, model.score];
+  },
+  
+  // Update level if reached high enough score
+  levelUp: function() {
+	model.levelUp();
   }
 };
 

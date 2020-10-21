@@ -3,6 +3,7 @@ var model = {
   avatar: new Avatar(),
   bullets: [],
   enemies: [],
+  level: 1,
 
   // Creates a new bullet and adds it to the bullets array
   avatarFire: function() {
@@ -84,7 +85,7 @@ var model = {
   },
 
   bulletHitsEnemy: function(bullet, enemy) {
-    model.score++;
+    model.score += 10;
     model.killEnemy(enemy);
     model.killBullet(bullet);
   },
@@ -97,6 +98,18 @@ var model = {
   killEnemy: function(enemy) {
     var i = model.enemies.indexOf(enemy);
     if (i >= 0) model.enemies.splice(i, 1);
+  },
+  
+  // Update level if reached high enough score
+  levelUp: function() {
+	if (model.score >= 100 && model.level === 1) {
+	  model.level++;
+	  model.avatar.image.src = "images/kadabra.png";
+	} 
+	if (model.score >= 200 && model.level === 2) {
+	  model.level++;
+	  model.avatar.image.src = "images/alakazam.jpg";
+	}
   }
 };
 
@@ -117,6 +130,7 @@ function Avatar() {
   this.size = 50;
   this.image = new Image();
   this.image.src = "images/abra.jpg";
+  
 
   // Renders the avatar image on the passed context, which should be a canvas
   this.draw = function(context) {

@@ -90,6 +90,8 @@ var view = {
     if (key.isPressed("S") || key.isPressed("down")) controller.updateAvatar(DOWN);
     // Update bullet locations
     if (controller.getBullets) controller.updateBullets();
+	// Update level if reached high enough score
+	controller.levelUp();
     // After updating everything, check and process any collisions
     controller.checkCollisions();
   },
