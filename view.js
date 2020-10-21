@@ -5,16 +5,17 @@ var view = {
   // Initialize game loop
   init: function() {
     var INTERVAL = 30; // Set pace of game, 30 ~ frames per second
-    // Attach eventListener for hitting spacebar for firing
+	// Attach eventListener for hitting spacebar for firing
     view.fireListener();
-
+	  
     window.onload = function() {
       var canvas = $("#canvas")[0],
         c = canvas.getContext("2d");
+	  
       // Game Loop
       setInterval(function() {
         var currentTime = new Date().getTime();
-
+	  
         view.update(currentTime);
         view.renderAvatar(canvas);
         view.renderBullets(canvas);
@@ -95,8 +96,8 @@ var view = {
 
   fireListener: function() {
     // Avatar launching fireball on hitting spacebar
-    $(document).on("keydown", function(e) {
-      if (e.keyCode == 32) controller.avatarFire();
+    $(document).on("keydown mousedown", function(e) {
+      if (e.keyCode == 32 || e.type == "mousedown") controller.avatarFire();
     });
   }
 };
