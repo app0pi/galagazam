@@ -185,7 +185,7 @@ function Enemy() {
   // Size and Bitmap image
   this.size = 50;
   this.image = new Image();
-  this.image.src = "images/haunter.png";
+  this.image.src = "images/haunter2.png";
 
   // Renders the bullet image on the passed context, which should be a canvas
   this.draw = function(context) {
