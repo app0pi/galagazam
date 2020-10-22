@@ -1,9 +1,25 @@
-﻿#title {
+﻿body {
+    background-color: dimgray;
+    animation-name: animation1;
+    animation-duration: 4s;
+}
+
+@keyframes animation1 {
+    from {background-color: black;}
+    to {background-color: dimgray;}
+}
+
+#title {
     color: limegreen;
     text-align: center;
     font-size: 400%;
     font-family: cursive, "Arial Black", Gadget, sans-serif;
     text-shadow: 2px 2px red;
+    transition: color 1s;
+}
+
+#title:hover {
+    color: forestgreen;
 }
 
 .stats {
@@ -21,4 +37,10 @@
     border: 1px solid black;
     background-image: url("images/stage.png");
     background-size: cover;
+}
+
+#instructions {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
 }

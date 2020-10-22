@@ -7,6 +7,7 @@ var model = {
   level: 1,
   justHit: false,
   gameOver: false,
+  winner: false,
 
   // Creates a new bullet and adds it to the bullets array
   avatarFire: function() {
@@ -85,6 +86,11 @@ var model = {
       //check to see if player is dead
       if (avatar.hp <= 0) {
           this.gameOver = true;
+      }
+
+      //check to see if player won
+      if (this.score >= 300) {
+          this.winner = true;
       }
     },
 
@@ -230,5 +236,11 @@ function Screen() {
         context.fillText("GAME  OVER", 180, 300);
 		context.font = "25px Arial";
 		context.fillText("CLICK ANYWHERE TO RESTART", 177.8, 350); 
+    }
+
+    this.drawWinner = function (context) {
+        context.font = "80px Arial";
+        context.fillStyle = "limegreen";
+        context.fillText("WINNER", 180, 300);
     }
 }
