@@ -73,17 +73,17 @@ var view = {
     newDiv.text(
       "Current Health: " + statArray[0] +
         " Score: " + statArray[1] +
-        " Level: " + statArray[2] + 
-        " GameOver: " + statArray[4]
+        " Level: " + statArray[2] 
+        //" GameOver: " + statArray[4]
     );
     $(".stats").append(newDiv);
   },
 
-    renderGameOver: function (canvas) {
-        var c = canvas.getContext("2d");
-        var screen = controller.getScreen();
-        screen.draw(c);
-    },
+  renderGameOver: function (canvas) {
+    var c = canvas.getContext("2d");
+    var screen = controller.getScreen();
+    screen.draw(c);
+  },
 
   // Cleans out the current canvas
   /*clearCanvas: function(canvas) {
@@ -118,6 +118,8 @@ var view = {
     // Avatar launching fireball on hitting spacebar
     $(document).on("keydown mousedown", function(e) {
       if (e.keyCode == 32 || e.type == "mousedown") controller.avatarFire();
-    });
+	  if (controller.checkGameOver() && e.type == "mousedown") controller.resetGame();
+	});
+	
   }
 };

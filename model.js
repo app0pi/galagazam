@@ -120,6 +120,18 @@ var model = {
 	  model.level++;
 	  model.avatar.image.src = "images/alakazam.jpg";
 	}
+  },
+  resetGame: function() {
+	  model.score = 0;
+	  model.level = 1;
+	  model.enemies = [];
+	  
+	  model.avatar.hp = 1;
+	  model.avatar.x = view.max / 2;
+	  model.avatar.y = view.max - 100;
+	  model.avatar.image.src = "images/abra.jpg";
+	  
+	  model.gameOver = false;
   }
 };
 
@@ -216,5 +228,7 @@ function Screen() {
         context.font = "60px Arial";
         context.fillStyle = "red";
         context.fillText("GAME  OVER", 180, 300);
+		context.font = "25px Arial";
+		context.fillText("CLICK ANYWHERE TO RESTART", 177.8, 350); 
     }
 }
