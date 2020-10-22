@@ -9,8 +9,8 @@ var view = {
     view.fireListener();
 	  
     window.onload = function() {
-      var canvas = $("#canvas")[0],
-        c = canvas.getContext("2d");
+        var canvas = $("#canvas")[0],
+            c = canvas.getContext("2d");
 	  
       // Game Loop
       setInterval(function() {
@@ -23,13 +23,15 @@ var view = {
         view.renderStats();
       }, INTERVAL);
     };
-  },
+    },
 
   // Renders the game board state on canvas
   renderAvatar: function(canvas) {
     // supercharge canvas element and clean it out
     var c = canvas.getContext("2d");
-    view.clearCanvas(canvas);
+    //view.clearCanvas(canvas);
+    //I replaced the clearCanvas function with this line which is simpler and doesn't fill with white
+    c.clearRect(0, 0, canvas.width, canvas.height);
 
     // retrieve avatar object from controller
     var avatar = controller.getAvatar();
@@ -70,13 +72,13 @@ var view = {
   },
 
   // Cleans out the current canvas
-  clearCanvas: function(canvas) {
+  /*clearCanvas: function(canvas) {
     var c = canvas.getContext("2d");
     c.beginPath();
     c.rect(0,0,view.max,view.max);
     c.fillStyle = "white";
     c.fill();
-  },
+  },*/
 
   // Main update function
   update: function(currentTime) {

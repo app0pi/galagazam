@@ -9,5 +9,7 @@
 }
 
 #canvas {
-  border: 1px solid black;
+    border: 1px solid black;
+    background-image: url("images/stage.png");
+    background-size: cover;
 }
