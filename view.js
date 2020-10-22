@@ -66,7 +66,8 @@ var view = {
     statArray = controller.getStats();
     newDiv.text(
       "Current Health: " + statArray[0] +
-      " Score: " + statArray[1]
+        " Score: " + statArray[1] +
+        " Level: " + statArray[2]
     );
     $(".stats").append(newDiv);
   },
