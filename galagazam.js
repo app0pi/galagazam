@@ -44,10 +44,18 @@ var controller = {
 
   checkCollisions: function() {
     model.checkCollisions();
-  },
+    },
+
+    checkGameOver: function () {
+        return model.gameOver;
+    },
+
+    getScreen: function () {
+        return model.screen;
+    },
 
   getStats: function() {
-    return [model.avatar.hp, model.score, model.level, model.justHit];
+    return [model.avatar.hp, model.score, model.level, model.justHit, model.gameOver];
   },
   
   // Update level if reached high enough score

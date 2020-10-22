@@ -1,10 +1,12 @@
 var model = {
   score: 0,
   avatar: new Avatar(),
+  screen: new Screen(),
   bullets: [],
   enemies: [],
   level: 1,
   justHit: false,
+  gameOver: false,
 
   // Creates a new bullet and adds it to the bullets array
   avatarFire: function() {
@@ -79,8 +81,12 @@ var model = {
           break;
         }
       }
-    }
-  },
+      }
+      //check to see if player is dead
+      if (avatar.hp <= 0) {
+          this.gameOver = true;
+      }
+    },
 
   enemyHitsAvatar: function(enemy) {
     model.avatar.hp -= 1;
@@ -119,8 +125,8 @@ var model = {
 
 function Avatar() {
   // Avatar stats
-  this.hp = 100;
-  this.damage = 1;
+  this.hp = 1;
+  //this.damage = 10;
 
   // Position
   this.x = view.max / 2;
@@ -134,11 +140,12 @@ function Avatar() {
   this.size = 100;
   this.image = new Image();
   this.image.src = "images/abra.jpg";
-  
+
 
   // Renders the avatar image on the passed context, which should be a canvas
   this.draw = function(context) {
       context.drawImage(this.image, this.x, this.y, this.size, this.size);
+      // red box over player if just got hit
       if (model.justHit == true) {
           context.lineWidth = 20;
           context.strokeStyle = "rgba(232, 14, 14,0.5)";
@@ -202,4 +209,12 @@ function Enemy() {
   this.draw = function(context) {
     context.drawImage(this.image, this.x, this.y, this.size, this.size);
   };
+}
+
+function Screen() {
+    this.draw = function (context) {
+        context.font = "60px Arial";
+        context.fillStyle = "red";
+        context.fillText("GAME  OVER", 180, 300);
+    }
 }

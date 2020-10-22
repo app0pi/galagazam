@@ -15,12 +15,18 @@ var view = {
       // Game Loop
       setInterval(function() {
         var currentTime = new Date().getTime();
-	  
-        view.update(currentTime);
-        view.renderAvatar(canvas);
-        view.renderBullets(canvas);
-        view.renderEnemies(canvas);
-        view.renderStats();
+          //check to see if gameOver variable in model is true
+          if (controller.checkGameOver() == false) {
+              view.update(currentTime);
+              view.renderAvatar(canvas);
+              view.renderBullets(canvas);
+              view.renderEnemies(canvas);
+              view.renderStats();
+          } else {
+              view.renderGameOver(canvas);
+          }
+
+        
       }, INTERVAL);
     };
     },
@@ -67,10 +73,17 @@ var view = {
     newDiv.text(
       "Current Health: " + statArray[0] +
         " Score: " + statArray[1] +
-        " Level: " + statArray[2]
+        " Level: " + statArray[2] + 
+        " GameOver: " + statArray[4]
     );
     $(".stats").append(newDiv);
   },
+
+    renderGameOver: function (canvas) {
+        var c = canvas.getContext("2d");
+        var screen = controller.getScreen();
+        screen.draw(c);
+    },
 
   // Cleans out the current canvas
   /*clearCanvas: function(canvas) {
@@ -97,6 +110,8 @@ var view = {
 	controller.levelUp();
     // After updating everything, check and process any collisions
     controller.checkCollisions();
+    // check to see if game is over
+    controller.checkGameOver();
   },
 
   fireListener: function() {
