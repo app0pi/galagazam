@@ -47,7 +47,7 @@ var controller = {
   },
 
   getStats: function() {
-    return [model.avatar.hp, model.score, model.level];
+    return [model.avatar.hp, model.score, model.level, model.justHit];
   },
   
   // Update level if reached high enough score

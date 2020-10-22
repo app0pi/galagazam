@@ -4,6 +4,7 @@ var model = {
   bullets: [],
   enemies: [],
   level: 1,
+  justHit: false,
 
   // Creates a new bullet and adds it to the bullets array
   avatarFire: function() {
@@ -50,6 +51,8 @@ var model = {
 
   // Checks for collisions and processes accordingly
   checkCollisions: function() {
+    model.justHit = false;
+
     var avatar = model.avatar;
     var bullets = model.bullets;
     var enemies = model.enemies;
@@ -82,6 +85,7 @@ var model = {
   enemyHitsAvatar: function(enemy) {
     model.avatar.hp -= 1;
     model.killEnemy(enemy);
+    model.justHit = true;
   },
 
   bulletHitsEnemy: function(bullet, enemy) {
@@ -134,7 +138,14 @@ function Avatar() {
 
   // Renders the avatar image on the passed context, which should be a canvas
   this.draw = function(context) {
-    context.drawImage(this.image, this.x, this.y, this.size, this.size);
+      context.drawImage(this.image, this.x, this.y, this.size, this.size);
+      if (model.justHit == true) {
+          context.lineWidth = 20;
+          context.strokeStyle = "rgba(232, 14, 14,0.5)";
+          context.beginPath();
+          context.rect(this.x+25, this.y+25, 50, 50);
+          context.stroke();
+      }
   };
 
   // Updates the current position of the avatar
