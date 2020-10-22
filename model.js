@@ -120,14 +120,14 @@ function Avatar() {
 
   // Position
   this.x = view.max / 2;
-  this.y = view.max - 50;
+  this.y = view.max - 100;
 
   // Movement Speed or step size
   this.dx = 10;
   this.dy = 10;
 
   // Size and Bitmap image
-  this.size = 50;
+  this.size = 100;
   this.image = new Image();
   this.image.src = "images/abra.jpg";
   

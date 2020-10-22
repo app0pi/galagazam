@@ -1,5 +1,14 @@
-﻿body {
-    color: red;
+﻿#title {
+    color: limegreen;
+    text-align: center;
+    font-size: 400%;
+    font-family: cursive, "Arial Black", Gadget, sans-serif;
+    text-shadow: 2px 2px red;
+}
+
+.stats {
+    font-size: 200%;
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 .center {
