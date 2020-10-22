@@ -50,6 +50,10 @@ var controller = {
         return model.gameOver;
     },
 
+    checkWinner: function () {
+        return model.winner;
+    },
+
     getScreen: function () {
         return model.screen;
     },
