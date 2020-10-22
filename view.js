@@ -86,11 +86,17 @@ var view = {
     screen.draw(c);
   },
 
-    renderWinner: function (canvas) {
-        var c = canvas.getContext("2d");
-        var screen = controller.getScreen();
-        screen.drawWinner(c);
-    },
+  renderWinner: function (canvas) {
+    var c = canvas.getContext("2d");
+    var screen = controller.getScreen();
+    screen.drawWinner(c);
+  },
+	
+  renderNext: function (canvas) {
+    var c = canvas.getContext("2d");
+    var screen = controller.getScreen();
+    screen.drawNext(c);
+  },
 
   // Cleans out the current canvas
   /*clearCanvas: function(canvas) {
@@ -122,8 +128,11 @@ var view = {
   fireListener: function() {
     // Avatar launching fireball on hitting spacebar
     $(document).on("keydown mousedown", function(e) {
+	  if (e.keyCode == 32 && e.target == document.body) e.preventDefault();
       if (e.keyCode == 32 || e.type == "mousedown") controller.avatarFire();
-	  if (controller.checkGameOver() && e.type == "mousedown") controller.resetGame();
+	  if ((controller.checkGameOver() || controller.checkWinner()) && e.type == "mousedown") {
+		  controller.resetGame();
+	  }
 	});
 	
   }

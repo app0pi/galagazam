@@ -121,10 +121,14 @@ var model = {
 	if (model.score >= 100 && model.level === 1) {
 	  model.level++;
 	  model.avatar.image.src = "images/kadabra.png";
+	  model.enemies = [];
+	  model.Enemy.image.src = "images/haunter.jpg";
 	} 
 	if (model.score >= 200 && model.level === 2) {
 	  model.level++;
 	  model.avatar.image.src = "images/alakazam.jpg";
+	  model.enemies = [];
+	  model.Enemy.image.src = "images/gengar.jpg";
 	}
   },
   resetGame: function() {
@@ -138,6 +142,7 @@ var model = {
 	  model.avatar.image.src = "images/abra.jpg";
 	  
 	  model.gameOver = false;
+	  model.winner = false;
   }
 };
 
@@ -209,19 +214,45 @@ function Bullet() {
 
 // Enemy drops randomly out of the top of the canvas
 function Enemy() {
+	
   // Starting position
   this.x = Math.random() * 850 - 50;
-  this.y = -50;
-
-  // Movement Speed or step size
-  this.scalar = Math.floor(Math.random() * 2);
-  this.dx = ((Math.random() * 10) - 5) * this.scalar;
-  this.dy = (Math.random() * 10) * this.scalar;
-
+  this.y = -50;	
+	
   // Size and Bitmap image
   this.size = 50;
   this.image = new Image();
-  this.image.src = "images/haunter2.png";
+  
+  // Random enemy based on level
+  enemyNum = Math.floor(Math.random() * model.level) + 1;
+  
+  if ( enemyNum == 1  ) {
+    this.image.src = "images/gastly.png";
+
+    // Movement Speed or step size
+    this.scalar = Math.floor(Math.random() * 1.5);
+    this.dx = ((Math.random() * 10) - 5) * this.scalar;
+    this.dy = (Math.random() * 5) * this.scalar;
+  
+  } else if ( enemyNum == 2) {
+	this.image.src = "images/haunter.png";
+    
+    // Movement Speed or step size
+    this.scalar = Math.floor(Math.random() * 2);
+    this.dx = ((Math.random() * 10) - 5) * this.scalar;
+    this.dy = (Math.random() * 10) * this.scalar;
+	
+  } else {
+	this.image.src = "images/gengar.png";
+	  
+    // Movement Speed or step size
+    this.scalar = Math.floor(Math.random() * 2);
+    this.dx = ((Math.random() * 10) - 5) * this.scalar;
+    this.dy = (Math.random() * 10) * this.scalar;
+  }	  
+  
+
+  
 
   // Renders the bullet image on the passed context, which should be a canvas
   this.draw = function(context) {
@@ -233,14 +264,24 @@ function Screen() {
     this.draw = function (context) {
         context.font = "60px Arial";
         context.fillStyle = "red";
-        context.fillText("GAME  OVER", 180, 300);
+        context.fillText("GAME  OVER", 150, 300);
 		context.font = "25px Arial";
-		context.fillText("CLICK ANYWHERE TO RESTART", 177.8, 350); 
+		context.fillText("CLICK ANYWHERE TO RESTART", 147.8, 350); 
     }
 
     this.drawWinner = function (context) {
         context.font = "80px Arial";
-        context.fillStyle = "limegreen";
-        context.fillText("WINNER", 180, 300);
+        context.fillStyle = "aquamarine";
+        context.fillText("YOU WIN", 190, 300);
+		context.font = "25px Arial";
+		context.fillText("CLICK ANYWHERE TO RESTART", 177.8, 350); 
+    }
+	
+	this.drawNext = function (context) {
+        context.font = "80px Arial";
+        context.fillStyle = "aquamarine";
+        context.fillText("NEXT LEVEL", 190, 300);
+		context.font = "25px Arial";
+		context.fillText("CLICK ANYWHERE TO CONTINUE", 177.8, 350); 
     }
 }
