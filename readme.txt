@@ -1,6 +1,12 @@
+--- Alakazam Studios ---
+  Andrew Faalevao
+  Amira Ramirez Gonzalez
+  Kenny Lieu
+------------------------
+
 Many CSS3 features were used such as:
 - text transition (the color of the title slowly changes over 1s when hovered over)
-- animation (background changing from black to gray over 4s)
+- animation (background changing from black to gray over 4s, transitions between level backgrounds)
 - text shadow (title has red shadow)
 - opacity
 - background image
