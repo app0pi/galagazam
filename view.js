@@ -21,6 +21,13 @@ var view = {
           } else if (controller.checkWinner() == true) {
               view.renderWinner(canvas);
           } else {
+			  
+			  switch ( controller.checkLevel() ) {
+				case 2: canvas.style.backgroundImage="url(images/stage2.png)"; break;
+				case 3: canvas.style.backgroundImage="url(images/stage3.png)"; break;
+				default: break;
+			  }
+			  
               view.update(currentTime);
               view.renderAvatar(canvas);
               view.renderBullets(canvas);
@@ -128,9 +135,12 @@ var view = {
   fireListener: function() {
     // Avatar launching fireball on hitting spacebar
     $(document).on("keydown mousedown", function(e) {
-	  if (e.keyCode == 32 && e.target == document.body) e.preventDefault();
-      if (e.keyCode == 32 || e.type == "mousedown") controller.avatarFire();
-	  if ((controller.checkGameOver() || controller.checkWinner()) && e.type == "mousedown") {
+	  switch(e.keyCode) {
+	    case 32: case 37: case 38: case 39: case 40: e.preventDefault(); break;
+		default: break;
+	  }
+	  if (e.keyCode == 32 || e.type == "mousedown") controller.avatarFire();
+	  if ((controller.checkGameOver() || controller.checkWinner()) && e.keyCode == 82) {
 		  controller.resetGame();
 	  }
 	});

@@ -53,6 +53,10 @@ var controller = {
   checkWinner: function () {
     return model.winner;
   },
+  
+  checkLevel: function () {
+    return model.level;
+  },
 
   getScreen: function () {
     return model.screen;
